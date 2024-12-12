@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data Visualization</title>
+    <!-- Plotly.js for 3D Chart -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <style>
+        /* General body and background */
+      body {
+    background-color: #ffffff; /* Dark mode background */
+    margin: 0;
+    overflow: show; /* Prevent scrolling */
+    height: 100vh; /* Full viewport height */
+}
+
+.tabs {
+    display: flex;
+    background-color: #333;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+}
+
+.tab-button {
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    flex: 1;
+}
+
+.tab-button.active {
+    background-color: #555;
+}
+
+.tab-content {
+    display: none;
+    width: 100%;
+    height: 100%; /* Ensure full height for tab content */
+    overflow: hidden; /* Prevent any overflow */
+}
+
+.tab-content.active {
+    display: block;
+    height: 100%; /* Ensure it takes full height */
+}
+
+#3dChart {
+    width: 100%;
+    height: 100vh; /* Full viewport height for the 3D chart */
+    background-color: #f61010; /* Dark background for the chart */
+    margin: 0;
+    padding: 0;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Tabs for navigation -->
+    <div class="tabs">
+        <div class="tab-button " onclick="showTab(0)">Spider Chart</div>
+        <div class="tab-button active" onclick="showTab(1)">3D Chart</div>
+        <div class="tab-button" onclick="showTab(2)">Correlation Heatmap</div>
+        <div class="tab-button" onclick="showTab(3)">Stage Analysis</div>
+    </div>
+
+    <!-- Content for each tab -->
+    <div id="tab1" class="tab-content ">
+        <canvas id="spiderCanvas"></canvas>
+    </div>
+
+    <div id="3dChart" class="tab-content active">
+      
+    </div>
+
+    <div  id="correlation-heatmap" class="tab-content " style="width: 100%; height: 100%; background: rgb(0, 0, 0);">        
+        <!-- Heatmaps will be dynamically generated here -->    
+    </div>
+    
+    <div id="stage-analysis" >
+        
+    </div>
+
+
+    
+
+
+    <script src="script-3d-chart.js"></script>
+    <script src="script-spider.js"></script>
+    
+    <script src="script-correlation.js"></script>
+    <script src="script-stage-analysis.js"></script>
+    <script>
+        // Function to show selected tab and hide others
+        function showTab(tabIndex) {
+            let tabs = document.querySelectorAll('.tab-content');
+            let buttons = document.querySelectorAll('.tab-button');
+
+            // Hide all tabs
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all buttons
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Show the selected tab
+            tabs[tabIndex].classList.add('active');
+            buttons[tabIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>

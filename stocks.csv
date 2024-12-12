@@ -1,0 +1,51 @@
+Stock,Sector,WeeklyChange,MonthlyChange,Correlation
+AAPL,Technology,0.05,0.12,0.8
+MSFT,Technology,0.03,0.10,0.7
+GOOG,Technology,0.07,0.15,0.85
+AMZN,Technology,-0.02,0.05,0.6
+META,Technology,0.04,0.08,0.75
+TSLA,Automotive,-0.01,0.02,0.3
+GM,Automotive,0.02,0.06,0.4
+F,Automotive,0.01,0.03,0.5
+BA,Automotive,-0.03,-0.01,0.6
+TSM,Technology,0.06,0.10,0.8
+JNJ,Healthcare,0.02,0.04,0.65
+PFE,Healthcare,0.01,0.03,0.55
+MRK,Healthcare,0.03,0.07,0.7
+AMGN,Healthcare,-0.01,0.02,0.4
+GE,Energy,0.01,0.02,0.5
+XOM,Energy,0.05,0.10,0.6
+CVX,Energy,0.03,0.07,0.6
+COP,Energy,-0.02,0.03,0.3
+PG,Consumer Goods,0.04,0.09,0.7
+KO,Consumer Goods,0.03,0.06,0.6
+PEP,Consumer Goods,0.02,0.05,0.65
+WMT,Consumer Goods,-0.01,0.03,0.4
+COST,Consumer Goods,0.01,0.04,0.5
+DIS,Entertainment,0.07,0.13,0.8
+NFLX,Entertainment,0.06,0.12,0.75
+TM,Automotive,-0.02,0.01,0.6
+NKE,Consumer Goods,0.05,0.08,0.7
+VZ,Telecommunications,0.01,0.03,0.4
+T,Telecommunications,-0.01,0.02,0.3
+AT&T,Telecommunications,0.02,0.04,0.5
+V,Finance,0.03,0.07,0.8
+MA,Finance,0.06,0.10,0.85
+GS,Finance,-0.01,0.02,0.6
+JPM,Finance,0.05,0.11,0.75
+BA,Industrial,0.03,0.08,0.7
+HON,Industrial,0.02,0.05,0.6
+LMT,Industrial,0.01,0.03,0.55
+CAT,Industrial,-0.03,0.01,0.4
+MCD,Consumer Goods,0.04,0.09,0.7
+SBUX,Consumer Goods,0.03,0.07,0.65
+CSCO,Technology,0.01,0.02,0.5
+IBM,Technology,-0.02,0.01,0.6
+ORCL,Technology,0.02,0.05,0.7
+NVDA,Technology,0.08,0.18,0.9
+AMD,Technology,0.05,0.12,0.8
+CSX,Transportation,-0.01,0.03,0.4
+UAL,Transportation,0.02,0.06,0.5
+NSC,Transportation,-0.02,0.01,0.3
+LUV,Transportation,0.01,0.04,0.6
+KMI,Energy,-0.01,0.02,0.5
