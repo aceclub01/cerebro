@@ -1,51 +1,162 @@
-Stock,Sector,WeeklyChange,MonthlyChange,Correlation
-AAPL,Technology,0.05,0.12,0.8
-MSFT,Technology,0.03,0.10,0.7
-GOOG,Technology,0.07,0.15,0.85
-AMZN,Technology,-0.02,0.05,0.6
-META,Technology,0.04,0.08,0.75
-TSLA,Automotive,-0.01,0.02,0.3
-GM,Automotive,0.02,0.06,0.4
-F,Automotive,0.01,0.03,0.5
-BA,Automotive,-0.03,-0.01,0.6
-TSM,Technology,0.06,0.10,0.8
-JNJ,Healthcare,0.02,0.04,0.65
-PFE,Healthcare,0.01,0.03,0.55
-MRK,Healthcare,0.03,0.07,0.7
-AMGN,Healthcare,-0.01,0.02,0.4
-GE,Energy,0.01,0.02,0.5
-XOM,Energy,0.05,0.10,0.6
-CVX,Energy,0.03,0.07,0.6
-COP,Energy,-0.02,0.03,0.3
-PG,Consumer Goods,0.04,0.09,0.7
-KO,Consumer Goods,0.03,0.06,0.6
-PEP,Consumer Goods,0.02,0.05,0.65
-WMT,Consumer Goods,-0.01,0.03,0.4
-COST,Consumer Goods,0.01,0.04,0.5
-DIS,Entertainment,0.07,0.13,0.8
-NFLX,Entertainment,0.06,0.12,0.75
-TM,Automotive,-0.02,0.01,0.6
-NKE,Consumer Goods,0.05,0.08,0.7
-VZ,Telecommunications,0.01,0.03,0.4
-T,Telecommunications,-0.01,0.02,0.3
-AT&T,Telecommunications,0.02,0.04,0.5
-V,Finance,0.03,0.07,0.8
-MA,Finance,0.06,0.10,0.85
-GS,Finance,-0.01,0.02,0.6
-JPM,Finance,0.05,0.11,0.75
-BA,Industrial,0.03,0.08,0.7
-HON,Industrial,0.02,0.05,0.6
-LMT,Industrial,0.01,0.03,0.55
-CAT,Industrial,-0.03,0.01,0.4
-MCD,Consumer Goods,0.04,0.09,0.7
-SBUX,Consumer Goods,0.03,0.07,0.65
-CSCO,Technology,0.01,0.02,0.5
-IBM,Technology,-0.02,0.01,0.6
-ORCL,Technology,0.02,0.05,0.7
-NVDA,Technology,0.08,0.18,0.9
-AMD,Technology,0.05,0.12,0.8
-CSX,Transportation,-0.01,0.03,0.4
-UAL,Transportation,0.02,0.06,0.5
-NSC,Transportation,-0.02,0.01,0.3
-LUV,Transportation,0.01,0.04,0.6
-KMI,Energy,-0.01,0.02,0.5
+Stock,Sector,WeeklyChange,MonthlyChange,Correlation,YoYGwt,FCFperShare,RevGrowth,%ROE
+Apple,Technology,1.43,9.93,0.7825,-34.00,7.06,2.02,157.41
+AbbVie Inc,Automative,-1.18,-0.03,-0.3548,-12.27,12.44,-6.44,56.06
+Airbnb Inc,Healthcare,-0.17,1.05,0.5182,-67.83,5.87,18.07,20.87
+Abbott Laboratories,Energy,-1.58,-2.28,0.7119,14.67,2.89,-8.12,14.93
+Arch Capital Group Ltd,Consumer Goods,-4.48,-1.56,0.1054,36.13,15.04,34.03,31.63
+Accenture PLC,Entertainment,1.06,1.83,0.7976,23.68,13.55,1.22,26.92
+Adobe Inc,Transportation,2.51,9.01,-0.4040,17.15,6.38,10.80,36.31
+Analog Devices Inc,Technology,-0.54,-1.52,0.0985,14.15,6.26,-23.39,4.61
+Archer-Daniels-Midland Co,Automative,2.22,1.07,-0.7827,-97.55,5.47,-7.50,7.62
+Automatic Data Processing Inc,Healthcare,-0.90,-1.97,0.9149,12.39,8.72,6.61,87.26
+Autodesk Inc,Energy,1.06,-2.05,0.9394,13.58,5.80,9.83,53.25
+Ameren Corp,Consumer Goods,-2.79,-2.65,0.8918,-8.85,-4.58,-5.74,9.91
+American Electric Power Company Inc,Entertainment,-2.72,-0.93,-0.3038,-1.67,-4.79,-3.35,10.14
+AES Corp,Transportation,1.19,-2.16,-0.5756,123.06,-6.59,0.40,39.19
+Aflac Inc,Technology,-2.60,-5.63,0.6131,-106.31,5.33,-2.42,16.04
+American International Group Inc,Automative,-3.05,-2.31,0.3897,"2,144.67",8.61,-14.32,9.02
+Assurant Inc,Healthcare,-3.32,2.94,0.8702,-27.90,17.40,9.33,15.21
+Arthur J. Gallagher & Co.,Energy,-7.71,-3.12,0.5008,9.52,8.38,17.79,10.35
+Akamai Technologies Inc,Consumer Goods,1.75,9.83,-0.0219,-63.52,3.20,5.40,11.54
+Albemarle Corp,Entertainment,1.20,-6.02,0.7975,-467.90,-7.00,31.38,-21.98
+Align Technology Inc,Transportation,1.80,6.34,0.0763,-1.86,7.94,3.42,11.40
+Allstate Corp,Technology,-5.68,-2.14,0.8542,"2,866.16",15.09,11.05,26.13
+Allegion PLC,Automative,-0.45,-2.08,0.6365,12.22,5.85,11.58,40.81
+Applied Materials Inc,Healthcare,-5.54,-9.24,-0.4233,-12.16,8.98,2.49,40.61
+Amcor PLC,Energy,-4.30,-2.81,-0.1916,25.22,0.58,-7.17,19.60
+Advanced Micro Devices Inc,Consumer Goods,-9.61,-11.67,0.1133,156.75,0.69,-3.90,3.26
+AMETEK Inc,Entertainment,-3.25,-1.52,0.8198,-0.24,6.91,7.26,14.89
+Amgen Inc,Transportation,-1.74,-15.04,-0.7260,62.38,13.68,7.09,55.72
+Ameriprise Financial Inc,Technology,-1.89,-2.34,0.9324,-38.59,41.75,6.15,56.75
+American Tower Corp,Automative,-3.81,1.79,-0.5850,-46.94,6.26,4.04,47.53
+Amentum Holdings Inc,Healthcare,-0.25,-26.12,-0.3695,22.15,0.34,2.46,NULL
+Amazon.com Inc,Energy,5.55,11.32,0.8544,52.60,3.07,11.83,22.56
+Arista Networks Inc,Consumer Goods,1.71,7.96,0.8999,35.95,1.58,33.75,33.83
+ANSYS Inc,Entertainment,-4.83,-0.67,0.8833,129.64,7.92,9.90,10.48
+Aon PLC,Transportation,-5.07,-5.41,0.8644,-29.53,15.53,7.19,86.11
+A O Smith Corp,Technology,-0.98,-2.96,-0.5291,-8.57,3.96,2.63,29.54
+APA Corp (US),Automative,0.81,0.95,-0.7969,-140.44,2.50,-25.25,71.80
+Air Products and Chemicals Inc,Healthcare,-4.62,-0.49,0.8467,186.05,-14.14,-3.96,24.51
+Amphenol Corp,Energy,-1.17,0.16,0.8721,15.61,1.74,-0.54,25.33
+Aptiv PLC,Consumer Goods,4.40,5.29,-0.6467,-74.34,3.50,14.65,24.66
+Alexandria Real Estate Equities Inc,Entertainment,-1.47,-7.16,-0.4645,648.36,-12.02,11.12,1.53
+Atmos Energy Corp,Transportation,-2.76,-4.16,0.8735,7.64,-7.88,-2.58,9.05
+AvalonBay Communities Inc,Technology,-0.72,-2.61,0.7028,116.06,1.73,6.73,8.79
+Broadcom Inc,Automative,7.41,2.40,0.7320,-139.70,4.13,7.88,12.51
+Avery Dennison Corp,Healthcare,-3.33,-3.43,-0.4602,31.71,6.67,-7.47,30.24
+American Water Works Company Inc,Energy,-0.51,-3.29,-0.6759,8.36,-3.63,11.66,9.70
+Axon Enterprise Inc,Consumer Goods,-6.54,4.27,0.8880,6.34,1.71,31.38,16.42
+American Express Co,Entertainment,-0.09,3.20,0.9458,5.78,23.09,24.41,34.23
+Autozone Inc,Transportation,4.79,5.34,0.3016,-0.07,108.49,5.92,NULL
+Boeing Co,Technology,4.85,11.41,-0.6788,-270.07,7.32,16.79,NULL
+Bank of America Corp,Automative,-0.63,0.00,0.8158,-10.31,3.15,3.82,8.27
+Ball Corp,Healthcare,-5.98,-4.81,-0.3625,50.42,2.58,-8.60,14.16
+Baxter International Inc,Energy,-6.12,-9.41,-0.5348,66.66,2.00,2.12,1.52
+Best Buy Co Inc,Consumer Goods,-3.78,-2.49,0.1693,4.57,3.09,-6.15,43.09
+Becton Dickinson and Co,Entertainment,-0.18,-5.78,-0.5496,274.18,10.72,4.16,6.60
+Franklin Resources Inc,Transportation,-1.24,3.80,0.0621,-131.20,1.56,8.51,3.54
+Brown-Forman Corp,Technology,9.71,9.76,-0.2508,8.20,0.88,-1.18,28.05
+Bunge Global SA,Automative,-2.04,-3.37,-0.7256,-36.97,14.50,-11.44,11.29
+Biogen Inc,Healthcare,-2.15,-8.47,-0.8650,665.41,8.49,-3.32,10.47
+Bank of New York Mellon Corp,Energy,-0.65,1.26,0.9431,22.07,10.41,8.40,9.13
+Booking Holdings Inc,Consumer Goods,0.95,4.49,0.9268,6.52,191.60,25.01,NULL
+Baker Hughes Co,Entertainment,-0.23,-3.74,0.7641,50.54,1.81,20.56,14.25
+Builders FirstSource Inc,Transportation,-2.80,-6.23,0.5793,-32.14,14.19,-24.77,27.44
+BlackRock Inc,Technology,2.92,1.08,0.9343,2.30,25.36,5.15,15.22
+Bristol-Myers Squibb Co,Automative,-2.95,-5.30,0.8795,-36.17,6.09,-2.50,-31.46
+Broadridge Financial Solutions Inc,Healthcare,1.14,4.15,0.7629,-11.39,7.92,7.36,31.81
+Berkshire Hathaway Inc,Energy,-1.48,-1.28,0.7509,307.08,"20,558.64",20.68,18.52
+Brown & Brown Inc,Consumer Goods,-6.33,-6.92,0.8236,32.03,3.35,19.13,17.81
+Boston Scientific Corp,Entertainment,-0.31,2.35,0.9291,-7.90,1.16,12.29,9.06
+Borgwarner Inc,Transportation,0.83,1.24,0.5890,191.54,2.41,12.37,15.41
+Blackstone Inc,Technology,3.73,5.05,0.9025,39.57,5.07,-5.31,31.46
+BXP Inc,Automative,0.28,-2.40,0.7521,174.15,1.78,5.26,6.29
+Citigroup Inc,Healthcare,0.64,3.09,0.7878,-7.27,-60.11,2.06,3.50
+Conagra Brands Inc,Energy,1.50,-0.04,-0.6247,45.86,3.39,-1.84,5.62
+Cardinal Health Inc,Consumer Goods,-6.24,-3.47,0.8566,"3,623.47",13.16,10.66,NULL
+Carrier Global Corp,Entertainment,-2.23,-3.39,0.6551,95.12,2.51,8.21,13.42
+Caterpillar Inc,Transportation,-2.66,-1.93,0.8898,-7.12,19.07,12.84,53.54
+Chubb Ltd,Technology,-2.94,-1.60,0.4837,15.07,30.50,15.72,16.93
+Cboe Global Markets Inc,Automative,-4.47,1.27,0.4278,5.97,9.70,12.75,19.41
+CBRE Group Inc,Healthcare,-0.07,1.37,0.9076,19.58,0.56,3.64,11.70
+Crown Castle Inc,Energy,-4.13,-4.73,-0.5085,13.81,3.92,-0.07,20.53
+Carnival Corp,Consumer Goods,-0.63,8.17,0.9077,59.95,0.79,77.46,20.12
+Cadence Design Systems Inc,Entertainment,-4.86,2.62,0.7498,-6.90,4.57,14.83,27.07
+CDW Corp,Transportation,-0.02,-9.89,-0.6220,1.03,10.64,-9.99,53.36
+Celanese Corp,Technology,-4.03,-13.45,-0.7080,-87.81,12.17,13.10,15.97
+Constellation Energy Corp,Automative,-6.92,-0.28,0.7358,68.86,-23.84,1.96,23.60
+CF Industries Holdings Inc,Healthcare,-1.84,5.57,0.8575,81.77,11.65,-40.72,21.32
+Citizens Financial Group Inc,Energy,-0.79,-0.54,0.7503,-9.93,-1.24,2.30,5.33
+Church & Dwight Co Inc,Consumer Goods,-3.92,-1.98,0.6735,-143.02,3.26,9.16,13.34
+CH Robinson Worldwide Inc,Entertainment,1.40,0.09,0.7350,17.25,5.41,-28.75,22.82
+Charter Communications Inc,Transportation,-5.88,-4.43,0.4003,6.89,21.83,1.08,37.11
+Cigna Group,Technology,-10.93,-14.29,-0.4069,-44.60,34.49,8.17,6.92
+Cincinnati Financial Corp,Automative,-2.96,0.34,0.8635,924.08,12.87,52.57,25.14
+Colgate-Palmolive Co,Healthcare,-2.16,0.87,-0.6468,4.70,3.67,8.29,"1,346.48"
+Clorox Co,Energy,-1.71,-0.24,0.7429,349.91,3.87,-4.01,"3,104.35"
+Comcast Corp,Consumer Goods,-6.67,-10.16,0.7349,-4.27,3.12,0.12,17.43
+CME Group Inc,Entertainment,-3.58,3.70,0.8924,21.54,9.39,50.38,12.14
+Chipotle Mexican Grill Inc,Transportation,2.63,10.63,0.8650,24.53,0.88,14.33,45.67
+Cummins Inc,Technology,-2.16,3.27,0.9255,27.63,19.29,21.34,20.00
+CMS Energy Corp,Automative,-1.01,-2.59,0.4858,40.65,-0.34,-13.19,13.43
+Centene Corp,Healthcare,-4.80,-6.34,-0.7685,57.17,13.29,6.54,11.66
+CenterPoint Energy Inc,Energy,-2.76,4.49,0.8203,-26.35,-0.83,-6.71,9.57
+Capital One Financial Corp,Consumer Goods,0.30,-2.19,0.8595,-0.87,90.73,7.71,7.60
+Cooper Companies Inc,Entertainment,-5.43,-4.12,0.4164,38.01,1.44,8.41,5.02
+ConocoPhillips,Transportation,-1.28,-8.80,-0.0846,-24.12,7.23,-28.48,20.31
+Cencora Inc,Technology,-6.62,-6.91,0.2449,-99.01,14.97,12.12,258.42
+Costco Wholesale Corp,Automative,0.38,6.63,0.8634,8.83,14.90,5.02,30.27
+Corpay Inc,Healthcare,-1.62,-2.18,0.9207,7.12,26.18,9.65,32.98
+Campbell's Co,Energy,0.73,-3.93,-0.6361,-7.46,2.23,2.98,14.51
+Copart Inc,Consumer Goods,-0.57,10.33,0.7789,8.35,0.99,9.49,19.47
+Camden Property Trust,Entertainment,-1.38,-1.22,0.3476,-108.77,3.51,8.38,7.17
+Charles River Laboratories International Inc,Transportation,-2.91,-12.30,-0.4425,-21.37,7.10,3.86,11.66
+Salesforce Inc,Technology,-3.54,3.84,0.9044,26.82,9.65,11.18,10.18
+CrowdStrike Holdings Inc,Automative,-0.33,6.00,0.9502,-162.64,3.81,36.33,4.98
+Cisco Systems Inc,Healthcare,-1.73,-0.07,0.9485,-24.11,2.51,-5.61,20.76
+CoStar Group Inc,Energy,-2.72,2.25,0.2262,-41.60,0.85,12.49,2.39
+CSX Corp,Consumer Goods,-4.79,-7.97,0.5191,11.25,1.62,-1.32,29.47
+Cintas Corp,Entertainment,-5.65,-5.86,0.9164,18.52,4.04,8.86,40.31
+Catalent Inc,Transportation,2.26,6.36,0.4389,83.10,-0.33,2.77,-11.19
+Coterra Energy Inc,Technology,-1.09,-0.24,0.4005,-20.58,2.05,-40.26,9.58
+Cognizant Technology Solutions Corp,Automative,0.83,-0.31,0.7618,12.87,3.99,-0.39,16.48
+Corteva Inc,Healthcare,-2.27,2.15,0.8104,-66.69,1.71,-1.31,2.68
+CVS Health Corp,Energy,-10.84,-7.26,-0.0757,-96.06,8.06,10.95,6.72
+Chevron Corp,Consumer Goods,-1.33,-0.19,0.5926,-28.58,10.52,-16.46,10.38
+Caesars Entertainment Inc,Entertainment,-3.92,-7.73,0.4290,-112.22,2.38,6.53,-8.22
+Dominion Energy Inc,Transportation,-3.71,-6.67,0.5018,39.99,-4.35,3.26,8.69
+Delta Air Lines Inc,Technology,-1.21,-0.13,0.9036,14.27,1.77,14.76,40.67
+Dayforce Inc,Automative,-3.00,-1.72,0.8839,151.29,0.66,21.47,2.19
+Dupont De Nemours Inc,Healthcare,-0.71,-2.03,0.5127,81.68,3.48,-7.29,2.10
+Deere & Co,Energy,-1.80,11.27,0.8461,-44.93,15.98,-15.52,31.82
+Deckers Outdoor Corp,Consumer Goods,0.39,15.74,0.8380,-76.75,6.04,18.21,43.57
+Dell Technologies Inc,Entertainment,-5.88,-14.31,0.8093,16.13,8.04,-13.56,NULL
+Discover Financial Services,Transportation,1.01,-1.74,0.8450,42.86,32.52,19.31,20.43
+Dollar General Corp,Technology,0.40,4.63,-0.7311,-28.92,3.14,2.24,19.37
+Quest Diagnostics Inc,Automative,-2.84,-2.80,0.6936,1.79,7.65,-6.38,12.66
+DR Horton Inc,Healthcare,-4.75,-8.23,-0.4111,-11.95,6.11,3.78,19.81
+Danaher Corp,Energy,-0.36,-3.23,-0.7234,-11.01,6.87,-10.33,7.59
+Walt Disney Co,Consumer Goods,-2.03,13.63,0.8060,75.58,4.67,2.77,4.97
+Digital Realty Trust Inc,Entertainment,-1.90,2.39,0.8682,-96.04,-6.12,16.74,2.11
+Dollar Tree Inc,Transportation,-2.98,17.02,-0.6963,12.09,2.63,8.02,-12.55
+Healthpeak Properties Inc,Technology,-0.14,-4.83,0.1414,4.57,0.38,5.81,4.11
+Dover Corp,Automative,-1.02,-1.65,0.9131,21.86,8.13,-0.82,29.11
+Dow Inc,Healthcare,-3.15,-10.31,-0.6911,-29.28,3.95,-21.58,5.55
+Domino's Pizza Inc,Energy,-2.04,2.35,0.5548,0.39,13.71,-1.27,NULL
+Darden Restaurants Inc,Consumer Goods,-1.98,-0.84,0.8334,9.07,8.22,8.60,48.62
+DTE Energy Co,Entertainment,-1.05,1.06,0.1820,42.98,-3.47,-33.72,13.61
+Duke Energy Corp,Transportation,-3.26,-2.55,0.2049,-11.07,-3.54,1.02,9.09
+DaVita Inc,Technology,-4.82,0.66,0.6949,-4.59,16.05,4.57,104.38
+Devon Energy Corp,Automative,-4.22,-10.78,-0.7776,-8.48,4.05,-23.64,26.27
+Dexcom Inc,Healthcare,-0.67,14.45,0.0309,16.03,1.20,24.49,32.06
+Electronic Arts Inc,Energy,-2.09,2.84,0.6494,-24.65,7.78,1.83,13.96
+eBay Inc,Consumer Goods,-0.24,1.19,0.6944,-47.72,3.71,3.24,35.85
+Ecolab Inc,Entertainment,-1.37,-2.04,0.4838,82.87,5.71,7.98,25.02
+Consolidated Edison Inc,Transportation,-4.01,-5.82,-0.2040,11.47,-6.69,-6.43,8.58
+Equifax Inc,Technology,-0.32,-3.05,-0.5188,-13.79,4.16,2.79,12.23
+Everest Group Ltd,Automative,-4.34,-1.91,0.0259,-24.51,110.27,16.51,20.62
+Edison International,Healthcare,-3.27,-2.39,0.3358,228.63,-5.32,-5.12,9.54
+Estee Lauder Companies Inc,Energy,2.43,25.75,-0.6417,-604.50,3.99,-2.06,3.89
+Elevance Health Inc,Consumer Goods,-3.64,-9.36,-0.7973,-20.03,28.50,9.42,15.62
+Eastman Chemical Co,Entertainment,-2.56,-2.97,0.4378,2.15,4.57,-12.95,16.08
+Emerson Electric Co,Transportation,-2.58,1.29,0.7191,-19.72,5.68,15.34,7.65
