@@ -46,7 +46,7 @@ fetch('stocks.csv')
             textposition: 'top center', // Position text relative to markers
             textfont: {
                 size: 10,
-                color: 'white'
+                color: 'black'
             },
             type: 'scatter3d',
             hovertemplate: 
@@ -60,18 +60,38 @@ fetch('stocks.csv')
         const layout = {
             title: '3D Stock Data Visualization',
             scene: {
-                xaxis: { title: 'Weekly Change (%)', color: 'white' },
-                yaxis: { title: 'Monthly Change (%)', color: 'white' },
-                zaxis: { title: 'Correlation', color: 'white' },
+                xaxis: {
+                    title: 'Weekly Change (%)',
+                    color: 'black',
+                    showgrid: true, // Ensure grid is shown
+                    gridcolor: 'black', // Set grid color to black
+                    zeroline: true, // Enable the zero-line
+                    zerolinecolor: 'red', // Set zero-line color to red
+                },
+                yaxis: {
+                    title: 'Monthly Change (%)',
+                    color: 'black',
+                    showgrid: true, // Ensure grid is shown
+                    gridcolor: 'black', // Set grid color to black
+                    zeroline: true, // Enable the zero-line
+                    zerolinecolor: 'red', // Set zero-line color to red
+                },
+                zaxis: {
+                    title: 'Correlation',
+                    color: 'black',
+                    showgrid: true, // Ensure grid is shown
+                    gridcolor: 'black', // Set grid color to black
+                    zeroline: true, // Enable the zero-line
+                    zerolinecolor: 'red', // Set zero-line color to red
+                },
                 camera: {
                     eye: { x: 2, y: 2, z: 2 }
                 }
             },
             hovermode: 'closest',
-            plot_bgcolor: '#ffffff',
-            paper_bgcolor: '#121212',
+            plot_bgcolor: 'black',
             font: {
-                color: 'white'
+                color: 'black' // Change font color to white for better contrast
             }
         };
 

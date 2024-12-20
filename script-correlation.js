@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const correlationHeatmapTab = document.getElementById("correlation-heatmap");
+  const correlationHeatmapTab = document.getElementById("correlationHeatmap");
 
   // Function to create the heatmap
   function generateHeatmap(containerId, labels, matrix, title) {
@@ -60,6 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
       return { sortedSectors, sectorMatrix, sortedStocks, stockMatrix };
   }
 
+  correlationHeatmapTab.innerHTML = '';
+
   // Fetch stock data from CSV and render heatmaps
   fetch("stocks.csv")
       .then(response => response.text())
@@ -75,11 +77,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                   // Create containers for both heatmaps
                   correlationHeatmapTab.innerHTML = `
-                      
-                      <div id="sectorHeatmap" style="width: 100%; height: 50%;"></div>
-                      <div id="stockHeatmap"  margin-top: 20px;"></div>
-                      
-                  `;
+                  <div id="sectorHeatmap" style="width: 100%; height: 50%;"></div>
+                  <div id="stockHeatmap" style="width: 100%; height: 50%; margin-top: 20px;"></div>
+              `;
+              
 
                   // Generate the sector heatmap
                   generateHeatmap(
