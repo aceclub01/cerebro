@@ -63,11 +63,8 @@
         justify-content: space-around;
         align-items: center;
         height: 100%;
-        /* height: 500px; */
-        position: relative;
-        overflow-y: auto; /* Enable vertical scrolling */
         }
-              
+        
         #charts, #lineChart {
             height: auto; /* Set a fixed height for the chart container */
         }
@@ -84,10 +81,6 @@
             display: none; /* Hidden by default */
             /* z-index: 1000; */
         }
-        .control-panel {
-      margin: 10px;
-    }
-
         #correlationHeatmap {
         display: block;
         padding: 20px;
@@ -109,19 +102,19 @@
 
         /* Side Panel Styles */
         #sidePanel {
-            position: absolute; /* Position the panel relative to the container */
-            top: 50px;         /* Adjust vertical position */
-            left: 20px;        /* Move it to the left */
-            width: 250px;      /* Panel width */
-            height: auto;      /* Let the panel grow with content */
-            background-color: rgba(255, 255, 255, 0.8); /* Background with some transparency */
+            position: absolute;   /* Position the panel relative to the container */
+            top: 50px;            /* Initial vertical position */
+            right: 20px;          /* Initial horizontal position */
+            width: 250px;         /* Adjust the panel's width */
+            height: auto;         /* Let the panel grow with content */
+            background-color: rgba(255, 255, 255, 0.8);  /* Background with some transparency */
             border: 1px solid #ccc;
             padding: 10px;
-            z-index: 9999;     /* Ensure it floats above other elements */
-            cursor: move;      /* Indicate that the panel is draggable */
+            z-index: 9999;        /* Ensure it floats above other elements */
+            cursor: move;         /* Indicate that the panel is draggable */
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for better visibility */
+            
         }
-
         /* Header section for draggable */
         #sidePanelHeader {
             cursor: move;
@@ -139,9 +132,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Custom font */
             color: #333; /* Adjust text color */
         }
-
-
-        
         #searchStock {
             pointer-events: auto; /* Ensure the input box is clickable */
                         position: relative;
@@ -173,7 +163,7 @@
             background-color: #45a049;
         }*/
        
-
+        
         /* Ensure the 3D chart is drawn before the table */
         #3dChart {
             order: 0;
@@ -219,8 +209,7 @@
         <div class="tab-button active" onclick="showTab(1)">3DAnalysis</div>
         <div class="tab-button" onclick="showTab(2)">PriceActions</div>
         <div class="tab-button" onclick="showTab(3)">CorrelationMap</div>
-        <div class="tab-button" onclick="showTab(4)">Charts</div>
-        <div class="tab-button" onclick="showTab(5)">SelectiveNews</div>
+    <div class="tab-button" onclick="showTab(4)">Charts</div>
     </div>
     <div id="controlPanel" class="control-panel">
         <!-- Control Panel for toggle options -->
@@ -232,7 +221,7 @@
         <input type="text" id="searchRIC" placeholder="Search RIC" style="margin-left: 20px;">
             : Key in the Stock Ric you like to focus on then click Refresh
     </div>
-   
+
     <!-- Content for each tab -->
     <div id="tab1" class="tab-content">
         <canvas id="spiderCanvas"></canvas>
@@ -246,15 +235,14 @@
         
         <div>
             
-            
-            <!-- <label for="sortFilter">Sort by:</label> -->
+            <label for="sortFilter">Sort by:</label>
             <select id="sortFilter">
                 <option value="Sector">Sector</option>
                 <option value="Stage">Stage</option>
                 <option value="WeeklyChange">Weekly Change (%)</option>
                 <option value="MonthlyChange">Monthly Change (%)</option>
             </select>
-            <button id="applySort">Sort Table</button>
+            <button id="applySort">Sort</button>
         </div>
         <div>
             <label for="zAxisFilter">Z-axis:</label>
@@ -284,15 +272,9 @@
         </div>
     </div>
     
-    <div id="stage-analysis" class="tab-content ">                 
-        
-            <h2>Seasonality review on the selected stocks: </h2>
-            
-                <!-- Selected stock names will be displayed here -->
-
-                End of display
-            </div>
-        </div>
+    <div id="stage-analysis" class="tab-content ">  
+                
+            <!-- Table content or other interactive elements -->
             <div id="dataTable">
                 <!-- Dynamic content gets injected here -->
             </div>
@@ -301,37 +283,20 @@
     <div id="correlationHeatmap" class="tab-content">
         <!-- Heatmaps will be dynamically generated here -->
     </div>
-    <div id="ricPanel" style="border: 1px solid #ccc; padding: 10px; margin-top: 20px; display:none">
-        No RICs clicked yet.
-        </div>
   <div id="charts" class="tab-content">
     <div class="chart-container">
       <canvas id="bubbleChart"></canvas>
       <canvas id="lineChart"></canvas>
     </div>
   </div>
-  <div id="stage-analysis" class="tab-content ">                 
-        
-    <h2>Seasonality review on the selected stocks: </h2>
-    <section id="priceActionsBody">
-        <!-- Selected stock names will be displayed here -->
 
-        End of display
-    </section>
-</div>
- 
   <!-- External scripts -->
     <script src="script-spider.js"></script>
     <script src="script-3d-chart.js"></script>
     <script src="script-stage-analysis.js"></script>
     <script src="script-correlation.js"></script>
-  <!-- <script src="pricethisScripts.js" defer></script> -->
+  <script src="pricethisScripts.js" defer></script>
   <script src="toggleNegExtZoom.js"></script>
-  <script src="bridge2News.js"></script>
-  <!-- <script src="bridgeStkSelect2NewsV1.js"></script> -->
-  <!-- <script src="bridgeStkSelect2NewsV1.js"></script> -->
- 
-
 
     <script>
      // Function to show selected tab and hide others
@@ -354,21 +319,16 @@
     // Manage specific visibility settings for tabs
     if (tabIndex === 1) { // For "3DAnalysis" tab
         document.getElementById("sidePanel").style.display = "block";
-        document.getElementById("controlPanel").style.display = "none"; 
-        document.getElementById("ricPanel").style.display = "none";     
-        
+        document.getElementById("controlPanel").style.display = "none";   
     }
     else if (tabIndex === 4) { // For "Charts" tab
-         document.getElementById("ricPanel").style.display = "block";     
          document.getElementById("charts").style.display = "block";        
          document.getElementById("controlPanel").style.display = "block";    
          document.getElementById("sidePanel").style.display = "none";
-            
      } 
     else {
         document.getElementById("sidePanel").style.display = "none";
         document.getElementById("controlPanel").style.display = "none";  
-        document.getElementById("ricPanel").style.display = "none"; 
     }
 
     // if (tabIndex === 4) { // For "Charts" tab
