@@ -4,7 +4,6 @@ let scatterData = [];
 let levelData = [];
 let isDragging = false;
 let startX, startY, endX, endY;
-let clickedRICs = []; // Global variable for storing clicked RIC names
 
 function drawZoomRect(chart, startX, startY, endX, endY) {
   const ctx = chart.ctx;
@@ -37,36 +36,6 @@ function applyZoom(chart, startX, startY, endX, endY) {
   chart.options.scales.y.max = yMax;
   chart.update();
 }
-function displayClickedRICs() {
-  const panel = document.getElementById('ricPanel');
-  panel.innerHTML = ''; // Clear existing content
-
-  if (clickedRICs.length === 0) {
-    panel.textContent = 'No RICs clicked yet.';
-    return;
-  }
-
-  const ul = document.createElement('ul');
-  clickedRICs.forEach(ric => {
-    const li = document.createElement('li');
-    li.textContent = ric;
-    ul.appendChild(li);
-  });
-  panel.appendChild(ul);
-}
-function onChartClick(event, chart) {
-  const elements = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
-  if (elements.length) {
-    const datasetIndex = elements[0].datasetIndex;
-    const index = elements[0].index;
-    const clickedRIC = chart.data.datasets[datasetIndex].data[index].label;
-
-    if (!clickedRICs.includes(clickedRIC)) {
-      clickedRICs.push(clickedRIC);
-      displayClickedRICs();
-    }
-  }
-} // <-- Closing the onChartClick function here
 
 function filterData() {
   const showPositive = document.getElementById('positiveToggle').checked;
@@ -239,7 +208,6 @@ function initializeCharts(data) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Allow custom height
             scales: {
                 x: {
                     title: { display: true, text: "SMA50-SMA200" },
@@ -315,7 +283,6 @@ function initializeCharts(data) {
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Allow custom height
             scales: {
                 x: {
                     title: { display: true, text: "SMA50-SMA200" },
@@ -482,7 +449,6 @@ function initializeCharts(data) {
     },
     options: {
       responsive: true,
-      onClick: (event) => onChartClick(event, bubbleChart), // Add click event
       scales: {
         x: {
           title: { display: true, text: "SMA50-SMA200" },
@@ -558,7 +524,6 @@ function initializeCharts(data) {
     },
     options: {
       responsive: true,
-      onClick: (event) => onChartClick(event, lineChart), // Add click event
       scales: {
         x: {
           title: { display: true, text: "SMA50-SMA200" },
@@ -610,7 +575,7 @@ function initializeCharts(data) {
     },
     plugins: [ChartDataLabels],
   });
-  displayClickedRICs(); // Initialize panel
+
   // Initial rendering
   filterData();
 }
@@ -655,27 +620,3 @@ document.getElementById('resetButton').addEventListener('click', () => {
   document.getElementById('hideExtremeRICs').checked = false;
   filterData();
 });
-// Function to populate the div
-function displayGlobalVariables() {
-  const priceActionsBody = document.getElementById("priceActionsBody");
-  priceActionsBody.innerHTML = `
-      <p>Price: ${globalVariables.price}</p>
-      <p>Currency: ${globalVariables.currency}</p>
-      <p>Timestamp: ${globalVariables.timestamp}</p>
-  `;
-}
-    // Function to handle tab switching
-    function switchTab(tabId) {
-      const tabContents = document.querySelectorAll('.tab-content');
-      tabContents.forEach(content => content.classList.remove('active'));
-
-      if (tabId === 'priceActions') {
-          document.getElementById('priceActionsBody').classList.add('active');
-          displayGlobalVariables();
-      } else if (tabId === 'otherTab') {
-          document.getElementById('otherTabBody').classList.add('active');
-      }
-  }
-  // Event listeners for tabs
-  document.getElementById("priceActions").addEventListener("click", () => switchTab('priceActions'));
-      
