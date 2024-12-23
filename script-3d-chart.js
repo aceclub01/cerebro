@@ -1,12 +1,12 @@
-fetch('ndx.csv')
+fetch('stocks.csv')
     .then(response => response.text())
     .then(csvData => {
         const rows = csvData.split('\n').slice(1); // Skip the header
         const data = rows.map(row => {
-            const [RIC, Sector, WeeklyChange, MonthlyChange, Correlation] = row.split(',');
+            const [Stock, Sector, WeeklyChange, MonthlyChange, Correlation] = row.split(',');
 
             return {
-                RIC,
+                Stock,
                 Sector,
                 WeeklyChange: parseFloat(WeeklyChange) || 0,  // Default to 0 if NaN
                 MonthlyChange: parseFloat(MonthlyChange) || 0,  // Default to 0 if NaN
@@ -17,7 +17,7 @@ fetch('ndx.csv')
         const x = data.map(d => d.WeeklyChange);
         const y = data.map(d => d.MonthlyChange);
         const z = data.map(d => d.Correlation);
-        const text = data.map(d => d.RIC); // Use only stock names for labels
+        const text = data.map(d => d.Stock); // Use only stock names for labels
 
         const sectors = [...new Set(data.map(d => d.Sector))];
         const sectorColors = {};

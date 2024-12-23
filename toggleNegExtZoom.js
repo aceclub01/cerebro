@@ -1,4 +1,4 @@
-//Cerebro toggleNegExtZoom.js
+//local toggleNegExtZoom.js
 // Global variables to hold the original data
 let originalData = [];
 let scatterData = [];
@@ -38,12 +38,13 @@ function applyZoom(chart, startX, startY, endX, endY) {
   chart.options.scales.y.max = yMax;
   chart.update();
 }
+// Ensure window.selectedStocks is initialized
 function displayClickedRICs() {
   const panel = document.getElementById('ricPanel');
   panel.innerHTML = ''; // Clear existing content
 
   if (clickedRICs.length === 0) {
-    panel.textContent = 'No RICs clicked yet.';
+    panel.textContent = 'No RICs shortlisted, select your Stocks';
     return;
   }
 
@@ -52,9 +53,38 @@ function displayClickedRICs() {
     const li = document.createElement('li');
     li.textContent = ric;
     ul.appendChild(li);
+
+    // Add the ric to the global selectedStocks array if not already present
+    if (!window.selectedStocks.includes(ric)) {
+      window.selectedStocks.push(ric);
+    }
   });
   panel.appendChild(ul);
+
+  // Log the current state of selectedStocks for debugging
+  console.log("Updated selectedStocks:", window.selectedStocks);
 }
+// Function to update the priceActionsBody with selected stock values and news
+function updatePriceActionsBody() {
+  const priceActionsBody = document.getElementById('priceActionsBody');
+  priceActionsBody.innerHTML = ''; // Clear previous content
+  
+  // If no stocks are selected
+  if (window.selectedStocks.length === 0) {
+      priceActionsBody.innerHTML = "No stocks selected.";
+  } else {
+      // Display stock symbols as usual
+      window.selectedStocks.forEach(stock => {
+          const stockElement = document.createElement("div");
+          stockElement.textContent = `Stock: ${stock}`;
+          priceActionsBody.appendChild(stockElement);
+      });
+
+      // Now, fetch and display the news for each stock
+      searchStocks(); // This is calling the function in bridge2News.js
+  }
+}
+
 function onChartClick(event, chart) {
   const elements = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
   if (elements.length) {
@@ -62,12 +92,119 @@ function onChartClick(event, chart) {
     const index = elements[0].index;
     const clickedRIC = chart.data.datasets[datasetIndex].data[index].label;
 
+    // Add to clickedRICs if not already present
     if (!clickedRICs.includes(clickedRIC)) {
       clickedRICs.push(clickedRIC);
       displayClickedRICs();
     }
+
+    // Ensure window.selectedStocks is initialized
+    window.selectedStocks = window.selectedStocks || [];
+
+    // Add to window.selectedStocks if not already present
+    if (!window.selectedStocks.includes(clickedRIC)) {
+      window.selectedStocks.push(clickedRIC);
+    }
+
+    // Update the clicked stock panel
+    updateClickedStockPanel();
+ 
+        // Update the Price Actions Body to reflect the selected stocks
+        updatePriceActionsBody();  // Add this line
+
+    // Log for debugging
+    console.log("Clicked RICs:", clickedRICs);
+    console.log("Global selectedStocks:", window.selectedStocks);
   }
-} // <-- Closing the onChartClick function here
+}
+
+function updateClickedStockPanel() {
+  const panel = document.getElementById('clickedStockPanel');
+
+  if (!panel) {
+    console.warn('Clicked stock panel does not exist in the DOM.');
+    return;
+  }
+
+  // Ensure the clear button is already in the DOM (from the static HTML)
+  const clearButton = document.getElementById('clearNamesButton');
+  if (clearButton) {
+    clearButton.addEventListener('click', () => {
+      window.selectedStocks = [];  // Clear selected stocks
+      updateClickedStockPanel();   // Refresh the panel
+      console.log('Shortlisted stocks cleared from the panel.');
+    });
+  } else {
+    console.warn('Clear Names button not found in the DOM.');
+  }
+
+  // Handle empty state
+  if (window.selectedStocks.length === 0) {
+    // Check if the empty message already exists
+    if (!panel.querySelector('p')) {
+      const emptyMessage = document.createElement('p');
+      emptyMessage.textContent = '__';
+      panel.appendChild(emptyMessage);
+    }
+    return;
+  }
+
+  // Create and append a list of selected stocks
+  let ul = panel.querySelector('ul');
+  if (!ul) {
+    ul = document.createElement('ul');
+    panel.appendChild(ul);
+  }
+
+  // Clear existing list items to update with new ones
+  ul.innerHTML = '';
+  window.selectedStocks.forEach(stockName => {
+    const li = document.createElement('li');
+    li.textContent = stockName;
+    ul.appendChild(li);
+  });
+}
+
+
+// Function to clear the ricPanel
+
+// Function to clear the ricPanel and selected stocks
+function clearRICPanel() {
+  const clickedStockPanel = document.getElementById("clickedStockPanel");
+  const ricPanel = document.getElementById("ricPanel");
+
+  if (!clickedStockPanel || !ricPanel) {
+    console.error("The clickedStockPanel or ricPanel does not exist in the DOM.");
+    return;
+  }
+
+  // Clear the clickedStockPanel content
+  const stockNames = clickedStockPanel.querySelectorAll("li");
+  stockNames.forEach(stockName => stockName.remove());
+
+  // Clear the ricPanel content
+  ricPanel.innerHTML = ''; // This clears all the HTML content inside the ricPanel
+
+  // Optionally, reset the selectedStocks array if needed
+  window.selectedStocks = [];
+  clickedRICs = []; // Clear the local array as well
+  console.log('All stock names and RICs cleared.');
+
+  // Refresh the Price Actions Body and Stock Panel if necessary
+  updatePriceActionsBody();
+  updateClickedStockPanel();
+}
+
+// Attach event listener to the clear button
+document.getElementById("clearNamesButton").addEventListener("click", () => {
+  clearRICPanel();
+});
+// Add the event listener for clearing stock names
+document.getElementById("clearNamesButton").addEventListener("click", clearNamesButton);
+
+// Ensure that window.selectedStocks is correctly initialized when the page loads
+window.selectedStocks = window.selectedStocks || [];
+
 
 function filterData() {
   const showPositive = document.getElementById('positiveToggle').checked;
