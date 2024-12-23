@@ -89,7 +89,7 @@ function updatePriceActionsBody() {
                     <option value="%ROE">% ROE</option>
                     <option value="Volume5D30D">Volume 5D/30D</option>
                 </select>
-                <button id="plot3D" style="margin-left: 10px;">Plot 3D</button>
+                <button id="plot3D" style="margin-left: 10px;">Refresh 3D</button>
                 <label for="excludeNegative" style="margin-left: 20px;">
                     <input type="checkbox" id="excludeNegative"> Exclude negative changes
                 </label>
@@ -325,33 +325,10 @@ chartTab.on('plotly_click', function(eventData) {
         const panel = document.getElementById("clickedStockPanel");
         const stockNamesDiv = panel ? panel.querySelector("#stockNames") : null;
     
-        // Get the tab header height
-        const tabHeaderHeight = document.querySelector(".tab-header")?.offsetHeight || 0;
-    
         // Check if the panel exists
         if (!panel) {
-            // If the panel doesn't exist, create it
-            const newPanel = document.createElement("div");
-            newPanel.id = "clickedStockPanel";
-            newPanel.style.position = "fixed";
-            newPanel.style.top = `${tabHeaderHeight + 50}px`; // Adjust below the tab header
-            newPanel.style.right = "20px";
-            newPanel.style.padding = "10px";
-            newPanel.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
-            newPanel.style.border = "1px solid #ccc";
-            const newStockNamesDiv = document.createElement("div");
-            newStockNamesDiv.id = "stockNames";
-            newStockNamesDiv.innerHTML = `<strong>Shortlisted Stocks:</strong>`;
-            newPanel.appendChild(newStockNamesDiv);
-    
-            // Create and add the clear button
-            const clearButton = document.createElement("button");
-            clearButton.textContent = "Clear Names";
-            clearButton.style.marginTop = "10px";
-            clearButton.addEventListener("click", () => clearStockNames()); // Call the function to clear names
-            newPanel.appendChild(clearButton);
-    
-            document.body.appendChild(newPanel);
+            console.error("The clickedStockPanel does not exist in the DOM.");
+            return;
         }
     
         // Only add the stock name if it isn't already displayed
@@ -368,19 +345,20 @@ chartTab.on('plotly_click', function(eventData) {
     }
     
     // Function to clear the recorded stock names
+    document.getElementById("clearNamesButton").addEventListener("click", () => clearStockNames());
+
     function clearStockNames() {
         const panel = document.getElementById("clickedStockPanel");
-        if (panel) {
-            const stockNamesDiv = panel.querySelector("#stockNames");
-            if (stockNamesDiv) {
-                stockNamesDiv.innerHTML = `<strong>Shortlisted Stocks:</strong>`;  // Reset the list
-            }
+        const stockNamesDiv = panel ? panel.querySelector("#stockNames") : null;
+        
+        if (stockNamesDiv) {
+            stockNamesDiv.innerHTML = `<strong>Shortlisted Stocks:</strong>`;  // Reset the list
         }
-
+    
         selectedStocks = [];
         updatePriceActionsBody();
     }
-
+    
     // Fetch and process the CSV file
     fetch("stocks.csv")
         .then((response) => response.text())

@@ -1,3 +1,4 @@
+//Cerebro toggleNegExtZoom.js
 // Global variables to hold the original data
 let originalData = [];
 let scatterData = [];
@@ -37,15 +38,12 @@ function applyZoom(chart, startX, startY, endX, endY) {
   chart.options.scales.y.max = yMax;
   chart.update();
 }
-// Ensure window.selectedStocks is initialized
-window.selectedStocks = window.selectedStocks || [];
-
 function displayClickedRICs() {
   const panel = document.getElementById('ricPanel');
   panel.innerHTML = ''; // Clear existing content
 
   if (clickedRICs.length === 0) {
-    panel.textContent = 'No RICs shortlisted, select your Stocks';
+    panel.textContent = 'No RICs clicked yet.';
     return;
   }
 
@@ -54,18 +52,9 @@ function displayClickedRICs() {
     const li = document.createElement('li');
     li.textContent = ric;
     ul.appendChild(li);
-
-    // Add the ric to the global selectedStocks array if not already present
-    if (!window.selectedStocks.includes(ric)) {
-      window.selectedStocks.push(ric);
-    }
   });
   panel.appendChild(ul);
-
-  // Log the current state of selectedStocks for debugging
-  console.log("Updated selectedStocks:", window.selectedStocks);
 }
-
 function onChartClick(event, chart) {
   const elements = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
   if (elements.length) {
@@ -73,86 +62,12 @@ function onChartClick(event, chart) {
     const index = elements[0].index;
     const clickedRIC = chart.data.datasets[datasetIndex].data[index].label;
 
-    // Add to clickedRICs if not already present
     if (!clickedRICs.includes(clickedRIC)) {
       clickedRICs.push(clickedRIC);
       displayClickedRICs();
     }
-
-    // Ensure window.selectedStocks is initialized
-    window.selectedStocks = window.selectedStocks || [];
-
-    // Add to window.selectedStocks if not already present
-    if (!window.selectedStocks.includes(clickedRIC)) {
-      window.selectedStocks.push(clickedRIC);
-    }
-
-    // Update the clicked stock panel
-    updateClickedStockPanel();
-
-    // Log for debugging
-    console.log("Clicked RICs:", clickedRICs);
-    console.log("Global selectedStocks:", window.selectedStocks);
   }
-}
-function updateClickedStockPanel() {
-  const panel = document.getElementById('clickedStockPanel');
-
-  if (!panel) {
-    console.warn('Clicked stock panel does not exist in the DOM.');
-    return;
-  }
-
-  // Clear the panel's content
-  panel.innerHTML = '';
-
-  // Create the heading
-  const heading = document.createElement('h3');
-  heading.textContent = 'Shortlisted Stocks:';
-  panel.appendChild(heading);
-
-  // Add the clear names button
-  const clearButton = document.createElement('button');
-  clearButton.textContent = 'Clear Names';
-  clearButton.style.marginBottom = '10px';
-  clearButton.addEventListener('click', () => {
-    window.selectedStocks = [];
-    clickedRICs = [];
-    updateClickedStockPanel(); // Refresh the panel
-    clearRICPanel(); // Clear the ricPanel
-    console.log('All shortlisted stocks and RICs cleared.');
-  });
-  panel.appendChild(clearButton);
-
-  // Handle empty state
-  if (window.selectedStocks.length === 0) {
-    const emptyMessage = document.createElement('p');
-    emptyMessage.textContent = 'No stocks selected yet.';
-    panel.appendChild(emptyMessage);
-    return;
-  }
-
-  // Create and append a list of selected stocks
-  const ul = document.createElement('ul');
-  window.selectedStocks.forEach(stockName => {
-    const li = document.createElement('li');
-    li.textContent = stockName;
-    ul.appendChild(li);
-  });
-  panel.appendChild(ul);
-}
-
-// Function to clear the ricPanel
-function clearRICPanel() {
-  const ricPanel = document.getElementById('ricPanel');
-  if (ricPanel) {
-    ricPanel.innerHTML = 'No RICs shortlisted, select your Stocks'; // Clear its content
-    console.log('ricPanel cleared.');
-  } else {
-    console.warn('ricPanel does not exist in the DOM.');
-  }
-}
-
+} // <-- Closing the onChartClick function here
 
 function filterData() {
   const showPositive = document.getElementById('positiveToggle').checked;

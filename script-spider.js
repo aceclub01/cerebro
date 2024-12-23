@@ -48,7 +48,7 @@ let mouseClickX = null, mouseClickY = null;
 let selectedSector = null;
 
 // Load CSV data
-Papa.parse('stocks.csv', {
+Papa.parse('ndx.csv', {
   download: true,
   header: true,
   skipEmptyLines: true,
@@ -63,25 +63,24 @@ Papa.parse('stocks.csv', {
 
 // Generate clusters
 function generateClusters() {
-    clusters = {};
-    stocks.forEach(stock => {
-        const sector = stock.Sector;
-        if (!clusters[sector]) {
-            clusters[sector] = [];
-        }
-        clusters[sector].push({
-            x: Math.random() * w,
-            y: Math.random() * h,
-            vx: (Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) * 0.5,
-            stockName: stock.Stock,
-            sectorColor: sectorColors[sector] || '#ffffff', // Assign sector color
-        });
+  clusters = {};
+  stocks.forEach(stock => {
+    const sector = stock.Sector;
+    if (!clusters[sector]) {
+      clusters[sector] = [];
+    }
+    clusters[sector].push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      stockName: stock.RIC,
+      sectorColor: sectorColors[sector] || '#ffffff',
     });
+  });
 
-    animate();
+  animate();
 }
-
 
 // Calculate distance between points
 function getDistance(x1, y1, x2, y2) {

@@ -121,7 +121,13 @@
             cursor: move;      /* Indicate that the panel is draggable */
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for better visibility */
         }
-
+        #clickedStockPanel {
+            overflow-y: auto; /* Adds a scrollbar if content exceeds available space */
+            max-height: 400px; /* Set a maximum height to prevent it from growing indefinitely */
+            padding: 10px; /* Optional: Add spacing around the content */
+            border: 1px solid #ccc; /* Optional: Add a border for visibility */
+            background-color: #f9f9f9; /* Optional: Set background color */
+            }
         /* Header section for draggable */
         #sidePanelHeader {
             cursor: move;
@@ -263,7 +269,7 @@
                 <option value="%ROE">% ROE</option>
                 <option value="Volume5D30D">Volume 5D/30D</option>
             </select>
-            <button id="plot3D">Plot 3D</button>
+            <button id="plot3D">Reload and Refresh 3D chart   </button>
         </div>
         <div>
             <label><input type="checkbox" id="excludeNegative"> Exclude negative changes</label><br>
@@ -283,7 +289,14 @@
         </div>
         </div>
     </div>
-    
+    <div id="clickedStockPanel" style="position: fixed; top: 100px; right: 20px; padding: 10px; background-color: rgba(255, 255, 255, 0.7); border: 1px solid #ccc;">
+        <div id="stockNames">
+            <strong>3D Shortlisted Stocks:</strong>
+        </div>
+        <button id="clearNamesButton" style="margin-top: 10px;">Clear Names</button>
+    </div>
+
+
     <div id="stage-analysis" class="tab-content ">                 
         
             <h2>Seasonality review on the selected stocks: </h2>
@@ -355,20 +368,24 @@
     if (tabIndex === 1) { // For "3DAnalysis" tab
         document.getElementById("sidePanel").style.display = "block";
         document.getElementById("controlPanel").style.display = "none"; 
-        document.getElementById("ricPanel").style.display = "none";     
+        document.getElementById("ricPanel").style.display = "none"; 
+        document.getElementById("clickedStockPanel").style.display = "block"; 
+            
         
     }
     else if (tabIndex === 4) { // For "Charts" tab
          document.getElementById("ricPanel").style.display = "block";     
          document.getElementById("charts").style.display = "block";        
          document.getElementById("controlPanel").style.display = "block";    
-         document.getElementById("sidePanel").style.display = "none";
+        document.getElementById("sidePanel").style.display = "none";
+        document.getElementById("clickedStockPanel").style.display = "block"; 
             
      } 
     else {
         document.getElementById("sidePanel").style.display = "none";
         document.getElementById("controlPanel").style.display = "none";  
         document.getElementById("ricPanel").style.display = "none"; 
+        document.getElementById("clickedStockPanel").style.display = "none"; 
     }
 
     // if (tabIndex === 4) { // For "Charts" tab
