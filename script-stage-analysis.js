@@ -75,40 +75,15 @@ function updatePriceActionsBody() {
         // Existing controls and table generation logic here
         let html = `
             <div style="text-align: center; margin-bottom: 10px;">
-                <label for="sortFilter">Sort by:</label>
-                <select id="sortFilter">
+                <label for="sortFilter">Sort by mmm:</label>
+                <select id="sortFilter1">
                     <option value="Sector">Sector</option>
                     <option value="Stage">Stage</option>
                     <option value="WeeklyChange">Weekly Change (%)</option>
                     <option value="MonthlyChange">Monthly Change (%)</option>
                 </select>
-                <button id="applySort">Sort</button>
-                <label for="zAxisFilter" style="margin-left: 20px;">Z-axis:</label>
-                <select id="zAxisFilter">
-                    <option value="RevGrowth">Revenue Growth</option>
-                    <option value="%ROE">% ROE</option>
-                    <option value="Volume5D30D">Volume 5D/30D</option>
-                </select>
-                <button id="plot3D" style="margin-left: 10px;">Refresh 3D</button>
-                <label for="excludeNegative" style="margin-left: 20px;">
-                    <input type="checkbox" id="excludeNegative"> Exclude negative changes
-                </label>
-                <label for="excludeNegativeWeekly" style="margin-left: 20px;">
-                    <input type="checkbox" id="excludeNegativeWeekly"> Exclude negative Weekly Change
-                </label>
-                <label for="excludeNegativeMonthly" style="margin-left: 20px;">
-                    <input type="checkbox" id="excludeNegativeMonthly"> Exclude negative Monthly Change
-                </label>
-                <label for="excludePositiveWeekly" style="margin-left: 20px;">
-                    <input type="checkbox" id="excludePositiveWeekly"> Exclude positive Weekly Change
-                </label>
-                <label for="excludePositiveMonthly" style="margin-left: 20px;">
-                    <input type="checkbox" id="excludePositiveMonthly"> Exclude positive Monthly Change
-                </label>
-                <label for="searchStock" style="margin-left: 20px;">Exclude Stock:</label>
-                <input type="text" id="searchStock" placeholder="Enter stock name(s), comma-separated">
-                <button id="applySearch">Apply</button>
-                <button id="resetButton" style="margin-left: 10px; margin-top: 10px;">Reset</button>
+                <button id="applySort1">Sort</button>
+                
             </div>
 
             <!-- 3D plot will be displayed here after loading -->
@@ -146,8 +121,8 @@ stageAnalysisTab.innerHTML += html;
 loadingMessage.style.display = "none";
 
 // Event listeners for sorting, plotting, etc.
-document.getElementById("applySort").addEventListener("click", () => {
-    const sortCriteria = document.getElementById("sortFilter").value;
+document.getElementById("applySort1").addEventListener("click", () => {
+    const sortCriteria = document.getElementById("sortFilter1").value;
     const sortedData = [...data].sort((a, b) => {
         if (sortCriteria === "WeeklyChange" || sortCriteria === "MonthlyChange") {
             return a[sortCriteria] - b[sortCriteria];
