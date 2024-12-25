@@ -17,16 +17,12 @@ let stocks = [];
 
 // Define sector colors
 const sectorColors = {
-  'Information Technology': '#ff6666',
-  'Financials': '#66ff66',
-  'Health Care': '#66ffff',
-  'Real Estate': '#ff66ff',
-  'Consumer Discretionary': '#ff9966',
-  'Utilities': '#99ff66',
+  'Technology': '#ff6666',
+  'Finance': '#66ff66',
+  'Automotive': '#6666ff',
   'Energy': '#ffff66',
-  'Industrials': '#6666ff',
+  'Healthcare': '#66ffff',
 };
-
 
 // Store clusters and spiders
 let clusters = {};
@@ -79,10 +75,8 @@ function generateClusters() {
       vx: (Math.random() - 0.5) * 0.5,
       vy: (Math.random() - 0.5) * 0.5,
       stockName: stock.Stock,
-      sectorColor: sectorColors[sector] || '#cccccc',
+      sectorColor: sectorColors[sector] || '#ffffff',
     });
-    console.log(`Sector: ${sector}, Color: ${sectorColors[sector] || '#ffffff'}`);
-
   });
 
   animate();
@@ -142,7 +136,7 @@ function drawClusters() {
       c.fill();
 
       // Stock name
-      c.fillStyle = '#000000';
+      c.fillStyle = '#ffffff';
       c.font = '12px Arial';
       c.fillText(dot.stockName, dot.x + 10, dot.y);
     });
@@ -198,14 +192,14 @@ function connectCloseDots() {
 const correlationLineConfig = {
   minDistance: 50, // Minimum distance to draw lines
   maxDistance: 150, // Maximum distance to draw lines
-  color: '#E0E0E0',
+  color: '#ffffff',
   width: 1,
 };
 
 // Feature 2: Updated function to display top 3 sectors with progress bars
 function drawBoundaryCircle() {
   if (mouseClickX && mouseClickY) {
-      c.strokeStyle = '#E0E0E0';
+      c.strokeStyle = '#ffffff';
       c.lineWidth = 2;
       c.beginPath();
       c.arc(mouseClickX, mouseClickY, 150, 0, Math.PI * 2); // Fixed radius of 150
@@ -235,7 +229,7 @@ function drawBoundaryCircle() {
           const percentage = (count / totalDots) * 100;
 
           // Label the sector
-          c.fillStyle = '#000000';
+          c.fillStyle = '#ffffff';
           c.font = '16px Arial';
           c.fillText(`${sector}: ${percentage.toFixed(1)}%`, mouseClickX - 50, mouseClickY + yOffset);
 
@@ -319,7 +313,7 @@ function handleIdle() {
 
 // Animation loop
 function animate() {
-  c.fillStyle = '#ffffff';
+  c.fillStyle = '#000000';
   c.fillRect(0, 0, w, h);
 
   handleIdle();
