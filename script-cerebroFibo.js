@@ -1,11 +1,10 @@
-// Ensure to include Chart.js and Chart.js Datalabels plugin in your HTML
+// Ensure to include Chart.js, Chart.js Datalabels plugin, and Chart.js Zoom plugin in your HTML
 // <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 // <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+// <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
 
-// Initialize drawing variables
-let drawingRectangle = false;
-let rectStart = { x: 0, y: 0 };
-let zoomRegion = { xMin: null, xMax: null, yMin: null, yMax: null };
+// Global variable for clicked RICs (assumes it's declared elsewhere in your project)
+// let clickedRICs = window.clickedRICs || [];
 
 // Function to fetch and parse the CSV data
 const fetchAndParseCSV = async (fileName) => {
@@ -13,16 +12,25 @@ const fetchAndParseCSV = async (fileName) => {
     const csvText = await response.text();
     const rows = csvText.split('\n').map(row => row.split(','));
     const headers = rows.shift();
-    const parsedData = rows.filter(row => row.length > 1).map(row => 
+    const parsedData = rows.filter(row => row.length > 1).map(row =>
         Object.fromEntries(row.map((val, i) => [headers[i], val]))
     );
     return parsedData;
 };
 
+// Function to reset zoom
+const resetZoomFibo = (chart) => {
+    chart.options.scales.x.min = null;
+    chart.options.scales.x.max = null;
+    chart.options.scales.y.min = null;
+    chart.options.scales.y.max = null;
+    chart.update();
+};
+
 // Function to create the scatter plot
 const createScatterPlot = async () => {
     const data = await fetchAndParseCSV('ndx.csv'); // Replace with actual CSV path
-  
+
     const scatterData = data.map(stock => {
         const lastPrice = parseFloat(stock["Last"]);
         const SMA50200 = parseFloat(stock["SMA50-SMA200"]);
@@ -101,6 +109,22 @@ const createScatterPlot = async () => {
                     },
                     color: '#000',
                 },
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: false, // Disabling mouse scroll zooming
+                        },
+                        drag: {
+                            enabled: true, // Keep drag zooming enabled
+                            mode: 'xy',  // Zoom in both x and y directions
+                        },
+                        mode: 'xy', // Ensure both axes can be zoomed in/out
+                    },
+                    pan: {
+                        enabled: true,
+                        mode: 'xy',
+                    }
+                }
             },
             scales: {
                 x: {
@@ -133,7 +157,66 @@ const createScatterPlot = async () => {
         plugins: [ChartDataLabels]
     });
 
-    // Add the drawing and zoom logic here as before (omitted for brevity)
+    handleCircleClick(chart, ctx.canvas); // Attach click event listener
+
+    // Double-click to reset zoom
+    ctx.canvas.addEventListener('dblclick', () => {
+        resetZoomFibo(chart);
+        console.log("Zoom reset on double-click");
+    });
+};
+
+// Function to handle circle clicks and update clicked RICs
+const handleCircleClick = (chart, canvas) => {
+    if (!canvas || !chart) {
+        console.error("Canvas or Chart is undefined"); // Debug: Check parameters
+        return;
+    }
+
+    canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+
+        if (points.length > 0) {
+            const datasetIndex = points[0].datasetIndex;
+            const index = points[0].index;
+
+            const clickedRIC = chart.data.datasets[datasetIndex].data[index].label;
+
+            if (!clickedRICs.includes(clickedRIC)) {
+                clickedRICs.push(clickedRIC);
+                console.log(`Added ${clickedRIC} to clickedRICs.`);
+                updateClickedStocksPanel(); // Update the panel
+            } else {
+                console.log(`${clickedRIC} is already in clickedRICs.`);
+            }
+
+            console.log("Current clickedRICs:", clickedRICs);
+        }
+    });
+};
+
+// Function to update the clicked stocks list on the panel
+const updateClickedStocksPanel = () => {
+    const panel = document.getElementById('clickedStockPanel'); // Get the panel element
+
+    // Create and append a list of selected stocks
+    let ul = panel.querySelector('ul');
+    if (!ul) {
+        ul = document.createElement('ul');
+        panel.appendChild(ul);
+    }
+
+    // Clear existing list items to update with new ones
+    ul.innerHTML = '';
+    clickedRICs.forEach(stockName => {
+        const li = document.createElement('li');
+        li.textContent = stockName;
+        ul.appendChild(li);
+    });
 };
 
 // Load the scatter plot on page load
